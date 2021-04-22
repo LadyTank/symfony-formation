@@ -1,0 +1,69 @@
+****************************************
+SYMFONY = kernel + composants
+****************************************
+C'est un framework PHP (cadriciel), une boîte à outils logicielle.
+CRUD (Create / Read / Update / Delete)
+
+SYMFONY va servir à accélérer/faciliter le développement d'applications PHP.
+C'est une boite à outil très complète qui entrecroise plusieurs compétences. 
+Un ensemble de composants (components) dont le coeur s'appelle "Kernel" = noyau.
+-> on peut installer uniquement le kernel mais son fonctionnement sera limité, il lui faudra d'autres composants.
+
+* Logiciel libre créée en 2009 par Fabien Potencier,
+* Actuellement à la v.5.2
+
+*****************************************
+            LES COMPOSANTS
+*****************************************
+- doctrine : va gérer la base de données, un ORM (object Relation Manager) -> dans l'appli SYMFONY on ne connait que l'ORM.
+- twig : va servir à faire des templates (gabarit) HTML.
+- monolog : outils pour gérer les journaux de logiciels (historique, journaux d'utilisation).
+- API : une API est comme un CRUD mais en lien avec URL. ça sert à créer une architecture pour que le dev front puisse accéder à ses données.
+
+On peut utiliser chacuns de ces composants séparemment.
+Ces composants sont installés avec un outils PHP -> composer
+///////// COMPOSER REQUIRE DOCTRINE //////////
+
+****************************************     
+          LES REPERTOIRES
+****************************************            
+/// dossiers ->
+- bin : binary, ce sont des fichiers exécutables, des outils pour simplifier (ex: console, phpunit, etc.)
+- config : contient les fichiers de configurations de symfony et de ses composants. 
+- migrations : doctrine va versionner l'évolution de la structure de la BDD (fichiers PHP).
+- public : contiendra tous les fichiers qu'on met en ligne, c'est le dossier qui faudra rendre accessible par le serveur http. il sécurise car en cas d'attaque pirate, seules les pages dans le dossier public seront accessibles.
+- src : c'est le code de notre application.
+- template : dossier qui contiendra les gabarit HTML.
+- tests : contient les tests pour tester l'application.
+- translations : contient les fichiers pour la traduction.
+- var : dossier de fichiers temporaires de symfony (cache et journaux).
+- vendor : n'est pas un dossier symfony. dossier lié à composer qui stocke à cet endroit tous les fichiers. 
+/// fichiers ->
+- .env : fichier de configuration pour notre environnement (connexion à la BDD)
+- composer.json : fichier utile à composer pour paramétrer ce package.
+/// Flex !
+ - /!\ Aucun rapport avec flex de css /!\
+ - Flex dans le sens de symfony flex est un logiciel qui sert à l'installation des composants.
+ - Les développeurs écrivent des recettes qui expliquent comment s'installent les composants de symfony.
+
+
+****************************************
+            MVC   
+****************************************
+Une façon d'écrire (patron de conception ou Pattern) du code en séparant 3 éléments : 
+- Modèles (model) : L'ensemble du code qui va intéragir avec la BDD
+- Vue (view) : L'ensemble qui concerne le rendu visuel
+- Contrôleur (controller) : Il est la colle entre le model et la view. Il fait le lien au moyen d'une route et gère aussi l'authentification.
+
+Intérêts : 
+- permet d'organiser le code à plusieurs (ex, pour les intégrateurs, les spécialistes de BDD et les développeurs)
+- optimise les performences : en séparant le code qui requête la BDD, du code qui fait le rendu visuel.
+
+Qu'est ce qu'une route en php, il en exite 5 :
+- Légèrement différente d'une URL, c'est juste un morceau d'URL à laquelle va correspondre une action dans notre application.
+-> /artiles/show : pour récupérer tous les articles
+-> /articles/create : pour créer un article
+-> /articles/1/show : pour afficher l'article 1
+-> /articles/1/update : pour mofifier l'article 1
+-> /articles/1/delete : pour supprimer l'article 1
+
