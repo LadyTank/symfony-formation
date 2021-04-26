@@ -16,6 +16,8 @@ URL ->  Une URL est composée de plusieurs éléments :
 * chemins
 * ressources
 
+-> l'anti slash n'est pas toléré dans l'URL
+
 protocole://utilisateur@domaine.fr:port/chemin/ressource.ressource
 Exemple : http://colombbus.org/contact/index.html
 Autre exemple : http://localhost:8080
