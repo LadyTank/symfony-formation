@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Bidule!{% endblock %}
+
+{% block body %}
+<h1>Liste des articles avec l'outil Twig et l'héritage</h1>
+<div class="bg-light">
+    <h1 class="display-3 p-5">La liste des articles</h1>
+    <p class="lead px-5 pb-3">html.twig étendu de base.html.twig</p>
+</div>
+    <div class="container">
+        <table class="table table-stripped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Auteur</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Date de publication</th>
+                    <th scope="col">Voir</th>
+                    <!-- raccourci ctrl + maj + 1 -->
+                    <th scope="col">Éditer</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in posts %}
+                <tr>
+                    <td>{{ p.id }}</td>
+                    <td>{{ p.auteur }}</td>
+                    <td>{{ p.titre }}</td>
+                    <td>{{ p.description }}</td>
+                    <td>{{ p.date_publication|date('Y-m-d H:i:s') }}</td>
+                    <td><a href="" class="far fa-eye text-decoration-none"></a></td>
+                    <td><a href="" class="fas fa-pencil-alt text-decoration-none text-success"></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

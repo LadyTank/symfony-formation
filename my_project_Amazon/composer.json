@@ -1,6 +1,4 @@
 {
-    "name": "10mentionweb/symphony",
-    "description": "application de formation à symphony",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "dev",
@@ -14,7 +12,6 @@
         "doctrine/doctrine-bundle": "^2.3",
         "doctrine/doctrine-migrations-bundle": "^3.1",
         "doctrine/orm": "^2.8",
-        "guzzlehttp/guzzle": "7.0",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/apache-pack": "^1.0",
