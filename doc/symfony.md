@@ -29,7 +29,9 @@ On peut utiliser chacuns de ces composants séparemment.
 ****************************************
 
 Ces composants sont installés avec un outils PHP -> composer
+
 -> composer s'utilise dans la console (en installant au préalable composer et une console).
+
 -> Pour installer doctrine : 
 /////////composer require doctrine ////////// message dans la console pour installer doctrine
 Tout programme qui respecte les conventions psr-4 peut être chargé ave composer.
@@ -86,7 +88,7 @@ Intérêts :
 Qu'est ce qu'une route en php, il en exite 5 :
 - Légèrement différente d'une URL, c'est juste un morceau d'URL à laquelle va correspondre une action dans notre application.
 
-//////// Exemples de route \\\\\\\\\
+********* Exemples de route **************
 -> /artiles : pour récupérer tous les articles
 -> /articles/create : pour créer un article
 -> /articles/1 : pour afficher l'article 1
@@ -96,12 +98,13 @@ Qu'est ce qu'une route en php, il en exite 5 :
 Pour créer une route, il y a plusieurs façons, nous utiliserons principalement celle des anotations.
 
 Pour utiliser les annotations dans le controller :
-1 / installer le paquet annotations 'composer require annotations'
-2/ utiliser un commentaire miltiligne pour donner une @Route
-3/ debug avec php bin/console debug:router 
-4/ voir ArticlesController.php
 
- ****************************************     
+1. Installer le paquet annotations 'composer require annotations'
+2. Utiliser un commentaire miltiligne pour donner une @Route
+3. Debug avec php bin/console debug:router 
+4. Voir ArticlesController.php
+
+****************************************     
           DEBUG
 ****************************************
 
@@ -161,12 +164,69 @@ Quans Symfony met en relation nos fonctions et ses dépendances, on parle de aut
 La liste complète des dépendances utilisables : 
 - php bin/console debug::autowiring
 
-# CRÉATION D'UNE TABLE Bidule (en Symfony, s'appelle une entité)
-1. s'assurer que la base de données est bien configurée
-2. lancer `php bin/console make:entity Bidule`
-3. répondre aux questions : nom de la propriété, type (appuyer sur ? pour voir les types), taille, nullable
+# CRÉATION D'UNE TABLE Bidule (en Symfony, une table s'appelle une entité)
+
+1. S'assurer que la base de données est bien configurée
+2. Lancer `php bin/console make:entity Bidule`
+3. Répondre aux questions : nom de la propriété, type (appuyer sur ? pour voir les types), taille, nullable
 4. Appuyer sur Entrée pour quitter les questions
-5. lancer php bin/console make:migration pour fabriquer le fichier de migration
-6. lancer `php bin/console doctrine:migrations:migration` pour appliquer la/les migrations
+5. Lancer php bin/console make:migration pour fabriquer le fichier de migration
+6. Lancer `php bin/console doctrine:migrations:migration` pour appliquer la/les migrations
 
 Note : il est possible de compléter une entité en reprenant l'étape 2
+
+***************************************************
+           LES FONDAMENTAUX HTTP ET SYMFONY   
+***************************************************
+
+- On trouvera toujours les mêmes étapes :
+
+1. Une requête utilisateur : Symfony assemble un objet Request
+2. Toute la requête passe par le Front Controller : [public/index.php]
+3. Le noyau identifie la route demandée et un éventuel contrôleur
+4. La requête est envoyée au contrôleur identifié en vue de faire une réponse
+5. La requête se termine
+
+****************************************
+           CONTRÔLEUR   
+****************************************
+
+Pour créer un contrôleur, vous faite :
+`php bin/console make:controller`
+
+La ligne de commande précédente, va créer une classe, une méthode, une route et un petit template.
+
+****************************************
+           TWIG   
+****************************************
+
+* Installer l'extension twig
+* Les fichiers sont nomnées .html.twig
+* La syntaxe html fonctionne normalement
+* Permet d'insérer des variabes et des petites fonctions de twig
+* Localisation des fichiers : dans le dossier template par défaut
+
+--> Include
+* Pour inclure un fichier : `{% include 'chemin/fichier.html.twig' %}`
+* Permet d'insérer l'entiereté d'un fichier, d'ajouter des morceaux de code
+
+--> Extends
+* Utile pour regrouper du code en définissant uniquement un bloc (système d'héritage)
+* Permet de modifier un fichier parent : `{% extends 'parent.html.twig' %}`
+* Il suffit de redéfinir le bloc à modifier du parent : `{% block nom_element %} Nouveau contenu {% endblock %}`
+
+--> Commentaires
+* Les commentaires sont écrits : ` {# mon commentaire #}`
+
+--> Gestion des chemins (url)
+* Pour laisser Twig calculer des url correctes, on peut utiliser :
+`{{ path ('nom_de_la_route') }}`
+
+****************************************
+           LES FORMULAIRES   
+****************************************
+
+* Pour un utlisateur, un formulaire se déroule toujours en deux étapes :
+
+1. Affichage du formulaire (Première requête)
+2. Traitement des données du formulaire (Deuxieme requête) -> (`<form action="..."</form>`)
